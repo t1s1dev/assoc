@@ -4,7 +4,7 @@ global Tabulator
 */
 
 $(document).ready(function() {
-  $.get( "data/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
+  $.get( "/getCoursesData", function( data ) { initCourseData( data, "course-table" ) });
   $.get( "data/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
   $.get( "data/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
   /*
