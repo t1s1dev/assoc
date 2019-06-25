@@ -8,7 +8,7 @@ def main():
 
 @app.route('/getCoursesData')
 def getCoursesData():
-    return send_file('data/AA_courses.csv', mimetype='text/csv')
+    return send_file('index.html')
 
 if __name__ == "__main__":
     app.run()
