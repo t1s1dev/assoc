@@ -5,8 +5,8 @@ global Tabulator
 
 $(document).ready(function() {
   $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
-  $.get( "data/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
-  $.get( "data/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
+  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
+  $.get( "/getData/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
   /*
   $.getJSON("http://34.229.45.11/json.php", function( json ) {
       initAssocData( json,"assoc-table" );
