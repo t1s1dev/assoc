@@ -6,8 +6,8 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
-@app.route('/getCoursesData')
-def getCoursesData(filename='AA_courses.csv'):
+@app.route('/getData/<path:filename>')
+def getData(filename):
     return send_from_directory('./static/data/', filename)
 
 if __name__ == "__main__":
