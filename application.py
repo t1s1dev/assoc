@@ -1,4 +1,4 @@
-from flask import Flask, render_template, send_from_directory
+from flask import Flask, render_template, send_file
 
 app = Flask(__name__)
 
@@ -8,7 +8,7 @@ def main():
 
 @app.route('/getCoursesData')
 def getCoursesData():
-    return send_from_directory('data/', 'AA_courses.csv', as_attachment=True)
+    return send_file('data/AA_courses.csv', mimetype='text/csv')
 
 if __name__ == "__main__":
     app.run()
