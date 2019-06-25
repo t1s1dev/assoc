@@ -13,7 +13,7 @@ def get_data(filename):
 @app.route('/saveData')
 def save_data():
     with open("test.txt","wb") as fo:
-    	fo.write("This is Test Data")
+        fo.write("This is Test Data")
 
 if __name__ == "__main__":
     app.run()
