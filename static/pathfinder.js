@@ -4,9 +4,9 @@ global Tabulator
 */
 
 $(document).ready(function() {
-  $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
-  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
-  $.get( "/getData/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
+  $.get( "data/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
+  $.get( "data/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
+  $.get( "data/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
   /*
   $.getJSON("http://34.229.45.11/json.php", function( json ) {
       initAssocData( json,"assoc-table" );
@@ -18,6 +18,14 @@ $(document).ready(function() {
   $("#download-json").click( function() {
     downloadJSON( assocData_obj.arr );
   });
+
+  $("#download-pdf").click( function() {
+    assocTable.download("pdf", "data.pdf", {
+      orientation: "portrait", //set page orientation to portrait
+      title: assocRoot_obj.name, //add title to report
+    });
+  });
+
 
   $("#download-csv").click( function() {
     downloadCSV( assocData_obj );
