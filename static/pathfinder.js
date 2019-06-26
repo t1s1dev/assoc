@@ -14,7 +14,7 @@ $(document).ready(function() {
 
   $("#download-pdf").click( function() {
     var title = $("#root-choice").val();
-    assocTable.download("pdf", "data.pdf", {
+    assocTable.download("pdf", "Global Knowledge report", {
       orientation: "portrait", //set page orientation to portrait
       title: title //add title to report
     });
