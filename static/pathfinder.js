@@ -13,9 +13,10 @@ $(document).ready(function() {
   });
 
   $("#download-pdf").click( function() {
+    var title = $("#root-choice").val();
     assocTable.download("pdf", "data.pdf", {
       orientation: "portrait", //set page orientation to portrait
-      title: assocRoot_obj.name, //add title to report
+      title: title //add title to report
     });
   });
 
