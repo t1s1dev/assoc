@@ -19,7 +19,7 @@ $(document).ready(function() {
     downloadJSON( assocData_obj.arr );
   });
 
-  $("download-pdf").click( function() {
+  $("#download-pdf").click( function() {
     assocTable.download("pdf", "data.pdf", {
       orientation: "portrait", //set page orientation to portrait
       title: assocRoot_obj.name, //add title to report
