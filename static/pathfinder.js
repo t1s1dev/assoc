@@ -22,6 +22,11 @@ $(document).ready(function() {
   $("#download-csv").click( function() {
     downloadCSV( assocData_obj );
   });
+
+  $('#nav-tab a').on('click', function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
 });
 
 const tableHeight = 500;

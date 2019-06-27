@@ -39,7 +39,7 @@
 </head>
 
 <body>
-<div class="container">
+<div class="container"><!--
   <div id="cols" class="row">
     <div id="certs" class="table-col col-4">
       <div class="h4">Certifications</div>
@@ -57,6 +57,22 @@
       </div>
     </div>
     <div id="courses" class="table-col col-4">
+      <div class="h4">Courses</div>
+      <div id="course-table"></div>
+    </div>
+  </div>-->
+  <nav>
+    <div class="nav nav-tabs" id="nav-tab" role="tablist">
+      <a class="nav-item nav-link active" id="nav-certs-tab" data-toggle="tab" href="#certs" role="tab" aria-controls="certs" aria-selected="true">Certifications</a>
+      <a class="nav-item nav-link" id="nav-courses-tab" data-toggle="tab" href="#courses" role="tab" aria-controls="courses" aria-selected="false">Courses</a>
+    </div>
+  </nav>
+  <div class="tab-content" id="nav-tabContent">
+    <div class="tab-pane fade" id="certs" role="tabpanel" aria-labelledby="nav-profile-tab">
+      <div class="h4">Certifications</div>
+      <div id="cert-table"></div>
+    </div>
+    <div class="tab-pane fade show active" id="courses" role="tabpanel" aria-labelledby="nav-home-tab">
       <div class="h4">Courses</div>
       <div id="course-table"></div>
     </div>
