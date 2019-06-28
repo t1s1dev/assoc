@@ -36,6 +36,8 @@ $(document).ready(function() {
     refreshTables();
   });
 
+  refreshTables();
+
 });
 
 const tableHeight = 500;
