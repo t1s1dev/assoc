@@ -1,0 +1,21 @@
+$(document).ready(function() {
+  $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table", edit=true) });
+  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table", edit=true ) });
+  $.get( "/getData/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table", edit=true ) });
+
+  $("#download-csv").click( function() {
+    downloadCSV( assocData_obj );
+  });
+
+  /* TAB NAV */
+
+  $('#nav-tab a').on('click', function (e) {
+    e.preventDefault();
+    $(this).tab('show');
+  });
+
+  $('#nav-tab a').on('shown.bs.tab', function (e) {
+    refreshTables();
+  });
+
+});

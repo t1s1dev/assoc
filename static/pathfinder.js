@@ -1,43 +1,3 @@
-/*
-global $
-global Tabulator
-*/
-
-$(document).ready(function() {
-  $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
-  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
-  $.get( "/getData/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
-  
-  $("#download-json").click( function() {
-    downloadJSON( assocData_obj.arr );
-  });
-
-  $("#download-pdf").click( function() {
-    var title = $("#root-choice").val();
-    assocTable.download("pdf", "Global Knowledge report", {
-      orientation: "portrait", //set page orientation to portrait
-      title: title //add title to report
-    });
-  });
-
-
-  $("#download-csv").click( function() {
-    downloadCSV( assocData_obj );
-  });
-
-  /* TAB NAV */
-
-  $('#nav-tab a').on('click', function (e) {
-    e.preventDefault();
-    $(this).tab('show');
-  });
-
-  $('#nav-tab a').on('shown.bs.tab', function (e) {
-    refreshTables();
-  });
-
-});
-
 const tableHeight = 500;
 
 // these need to persist and be accessible
@@ -212,7 +172,7 @@ function setupCertTable( data_obj, tableName ) {
   }
 }
 
-function setupAssocTable( tableName ){
+function setupAssocTable( tableName, edit ){
   
     // show filtered version of table
   assocTable = new Tabulator("#"+assocTableName, {
@@ -222,17 +182,17 @@ function setupAssocTable( tableName ){
   });
 }
 
-function initCourseData( data, tableName ) {
+function initCourseData( data, tableName, edit ) {
   courseData_obj = processData( data );
   courseTableName = tableName;
-  courseTableConfig_obj = setupCourseTable( courseData_obj, courseTableName );
+  courseTableConfig_obj = setupCourseTable( courseData_obj, courseTableName, edit );
   new Tabulator("#"+courseTableName, courseTableConfig_obj);
 }
 
-function initCertData( data, tableName ) {
+function initCertData( data, tableName, edit ) {
   certData_obj = processData( data );
   certTableName = tableName;
-  certTableConfig_obj = setupCertTable( certData_obj, certTableName );
+  certTableConfig_obj = setupCertTable( certData_obj, certTableName, edit );
   new Tabulator("#"+certTableName, certTableConfig_obj);
 }
 
@@ -241,10 +201,10 @@ function refreshTables() {
   new Tabulator("#"+courseTableName, courseTableConfig_obj);
 }
 
-function initAssocData( data, tableName ) {
+function initAssocData( data, tableName, edit ) {
   assocData_obj = processData( data );
   assocTableName = tableName;
-  setupAssocTable( assocTableName );
+  setupAssocTable( assocTableName, edit );
 }
 
 /**************************
@@ -307,7 +267,7 @@ function resetAssocTable( selected, data_obj, ID ) {
     assocRoot_obj.name = certData_obj.headers[1];
     columns = [
       { title: "Certification Name", field: assocRoot_obj.name },
-      { formatter:"buttonCross", width: 40, align:"center", cellClick: onDeleteClick }
+      (edit?{ formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }:null)
     ];
     // build correct filter
     $.grep(assocData_obj.arr, function( element, i ) {
@@ -328,7 +288,7 @@ function resetAssocTable( selected, data_obj, ID ) {
     columns = [
       { title: "ID", field: courseData_obj.headers[0], width: 60 },
       { title: "Course Name", field: assocRoot_obj.name },
-      { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
+      (edit?{ formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }:null)
     ];
     // build correct filter
     $.grep(assocData_obj.arr, function( element, i ) {
