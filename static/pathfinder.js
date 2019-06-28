@@ -15,7 +15,7 @@ var assocData_obj = {};
 var assocRoot_obj = { type:"", ID:"", name:"" };
 var assocTableName;
 
-var editMode = (function () {
+var editMode = function () {
   var isEditor;
 
   return {
@@ -26,7 +26,7 @@ var editMode = (function () {
       return( isEditor );
     },
   }
-})();
+}();
 
 function processData( data ) {
   var dataRows = data.split(/\r\n|\n/);
