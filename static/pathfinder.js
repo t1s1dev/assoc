@@ -203,13 +203,13 @@ function setupCertTable( data_obj, tableName ) {
     { formatter: addButtonCustomFormatter, width: 40, align:"center", cellClick: onAddClick }
     ]
 
-  var table = new Tabulator("#"+tableName, {
+  return {
     data: data_arr,
     layout: "fitColumns",
     pagination:"local",
     paginationSize: 10,
     columns: columns
-  });
+  }
 }
 
 function setupAssocTable( tableName ){
