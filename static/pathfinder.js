@@ -280,7 +280,7 @@ function resetAssocTable( selected, data_obj, ID ) {
   if (assocRoot_obj.type === "course") {
     assocRoot_obj.name = certData_obj.headers[1];
 
-    columns = editMode.get() ? [
+    columns = editMode().get() ? [
       { title: "Certification Name", field: assocRoot_obj.name },
       { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
     ] : [
@@ -302,7 +302,7 @@ function resetAssocTable( selected, data_obj, ID ) {
   // set up table to show courses for CERTIFICATION
   else {
     assocRoot_obj.name = courseData_obj.headers[1];
-    columns = editMode.get() ? [
+    columns = editMode().get() ? [
       { title: "ID", field: courseData_obj.headers[0], width: 60 },
       { title: "Course Name", field: assocRoot_obj.name },
       { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }

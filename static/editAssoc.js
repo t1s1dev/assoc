@@ -1,8 +1,8 @@
 $(document).ready(function() {
   editMode().set( true );
 
-  $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table") });
-  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table" });
+  $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
+  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
   $.get( "/getData/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
 
   $("#download-csv").click( function() {
