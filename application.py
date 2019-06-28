@@ -6,6 +6,10 @@ app = Flask(__name__)
 def main():
     return render_template('index.html')
 
+@app.route("/edit")
+def edit():
+    return render_template('edit.html')
+
 @app.route('/getData/<path:filename>')
 def get_data(filename):
     return send_from_directory('./static/data/', filename)
