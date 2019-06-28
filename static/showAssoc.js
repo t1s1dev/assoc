@@ -1,7 +1,9 @@
 $(document).ready(function() {
-  $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table", edit=false ) });
-  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table", edit=false ) });
-  $.get( "/getData/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table", edit=false ) });
+  editMode().set( false );
+
+  $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
+  $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
+  $.get( "/getData/AA_assoc.csv", function( data ) { initAssocData( data, "assoc-table" ) });
 
   $("#download-pdf").click( function() {
     var title = $("#root-choice").val();

@@ -1,6 +1,7 @@
 const tableHeight = 500;
 
 // these need to persist and be accessible
+
 var courseData_obj = {};
 var courseTableConfig_obj = {};
 var courseTableName;
@@ -13,6 +14,19 @@ var assocTable;
 var assocData_obj = {};
 var assocRoot_obj = { type:"", ID:"", name:"" };
 var assocTableName;
+
+function editMode() {
+  var isEditor = false;
+
+  return {
+    function set( setIsEditor ) {
+      isEditor = setIsEditor;
+    },
+    function get() {
+      return( isEditor );
+    },
+  }
+}
 
 function processData( data ) {
   var dataRows = data.split(/\r\n|\n/);
@@ -172,7 +186,7 @@ function setupCertTable( data_obj, tableName ) {
   }
 }
 
-function setupAssocTable( tableName, edit ){
+function setupAssocTable( tableName ){
   
     // show filtered version of table
   assocTable = new Tabulator("#"+assocTableName, {
@@ -182,17 +196,17 @@ function setupAssocTable( tableName, edit ){
   });
 }
 
-function initCourseData( data, tableName, edit ) {
+function initCourseData( data, tableName ) {
   courseData_obj = processData( data );
   courseTableName = tableName;
-  courseTableConfig_obj = setupCourseTable( courseData_obj, courseTableName, edit );
+  courseTableConfig_obj = setupCourseTable( courseData_obj, courseTableName );
   new Tabulator("#"+courseTableName, courseTableConfig_obj);
 }
 
-function initCertData( data, tableName, edit ) {
+function initCertData( data, tableName ) {
   certData_obj = processData( data );
   certTableName = tableName;
-  certTableConfig_obj = setupCertTable( certData_obj, certTableName, edit );
+  certTableConfig_obj = setupCertTable( certData_obj, certTableName );
   new Tabulator("#"+certTableName, certTableConfig_obj);
 }
 
@@ -201,10 +215,10 @@ function refreshTables() {
   new Tabulator("#"+courseTableName, courseTableConfig_obj);
 }
 
-function initAssocData( data, tableName, edit ) {
+function initAssocData( data, tableName ) {
   assocData_obj = processData( data );
   assocTableName = tableName;
-  setupAssocTable( assocTableName, edit );
+  setupAssocTable( assocTableName );
 }
 
 /**************************
@@ -265,9 +279,12 @@ function resetAssocTable( selected, data_obj, ID ) {
   // set up table to show certifications for COURSE
   if (assocRoot_obj.type === "course") {
     assocRoot_obj.name = certData_obj.headers[1];
-    columns = [
+
+    columns = editMode.get() ? [
       { title: "Certification Name", field: assocRoot_obj.name },
-      (edit?{ formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }:null)
+      { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
+    ] : [
+      { title: "Certification Name", field: assocRoot_obj.name }
     ];
     // build correct filter
     $.grep(assocData_obj.arr, function( element, i ) {
@@ -285,10 +302,13 @@ function resetAssocTable( selected, data_obj, ID ) {
   // set up table to show courses for CERTIFICATION
   else {
     assocRoot_obj.name = courseData_obj.headers[1];
-    columns = [
+    columns = editMode.get() ? [
       { title: "ID", field: courseData_obj.headers[0], width: 60 },
       { title: "Course Name", field: assocRoot_obj.name },
-      (edit?{ formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }:null)
+      { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
+    ] : [
+      { title: "ID", field: courseData_obj.headers[0], width: 60 },
+      { title: "Course Name", field: assocRoot_obj.name }
     ];
     // build correct filter
     $.grep(assocData_obj.arr, function( element, i ) {
