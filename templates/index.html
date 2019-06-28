@@ -16,10 +16,6 @@
     #col-header {
       height: 45px;
     }
-    .table-col {
-      width: 33.3333%;
-      max-width: 33.3333%;
-    }
     .tabulator .tabulator-footer .tabulator-page {
       padding: 3px 6px;
     }
@@ -44,31 +40,8 @@
 
 <body>
 <div class="container">
-  <!--
-  <div id="cols" class="row">
-    <div id="certs" class="table-col col-4">
-      <div class="h4">Certifications</div>
-      <div id="cert-table"></div>
-    </div>
-    <div id="assoc" class="table-col col-4">
-      <div class="w-100">
-        <small id="root-type" class="text-muted mt-5">&nbsp;</small>
-        <input id="root-choice" type="text" class="h4 text-primary w-100" placeholder="Select">
-      </div>
-      <div id="assoc-table"></div>
-      <div class="table-controls">
-        <button id="download-csv" class="btn btn-sm bg-primary text-white">Download CSV</button>
-        <button id="download-pdf" class="btn btn-sm bg-secondary text-white">Download PDF to share</button>
-      </div>
-    </div>
-    <div id="courses" class="table-col col-4">
-      <div class="h4">Courses</div>
-      <div id="course-table"></div>
-    </div>
-  </div>
-  -->
   <div id="cols" class="row m-3">
-    <div class="table-col col-6">
+    <div class="col-6">
       <nav>
         <div class="nav nav-tabs" id="nav-tab" role="tablist">
           <a class="nav-item nav-link active" id="nav-certs-tab" data-toggle="tab" href="#certs" role="tab" aria-controls="certs" aria-selected="true">Certifications</a>
@@ -86,7 +59,7 @@
         </div>
       </div>
     </div>
-    <div id="assoc" class="table-col col-6">
+    <div id="assoc" class="col-6">
       <div class="w-100">
         <small id="root-type" class="text-muted mt-5">&nbsp;</small>
         <input id="root-choice" type="text" class="h4 text-primary w-100" placeholder="Select">

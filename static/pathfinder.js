@@ -36,8 +36,6 @@ $(document).ready(function() {
     refreshTables();
   });
 
-  refreshTables();
-
 });
 
 const tableHeight = 500;
@@ -228,20 +226,20 @@ function initCourseData( data, tableName ) {
   courseData_obj = processData( data );
   courseTableName = tableName;
   courseTableConfig_obj = setupCourseTable( courseData_obj, courseTableName );
+  new Tabulator("#"+courseTableName, courseTableConfig_obj);
+}
+
+function initCertData( data, tableName ) {
+  certData_obj = processData( data );
+  certTableName = tableName;
+  certTableConfig_obj = setupCertTable( certData_obj, certTableName );
+  new Tabulator("#"+certTableName, certTableConfig_obj);
 }
 
 function refreshTables() {
   new Tabulator("#"+certTableName, certTableConfig_obj);
   new Tabulator("#"+courseTableName, courseTableConfig_obj);
 }
-
-
-function initCertData( data, tableName ) {
-  certData_obj = processData( data );
-  certTableName = tableName;
-  certTableConfig_obj = setupCertTable( certData_obj, certTableName );
-}
-
 
 function initAssocData( data, tableName ) {
   assocData_obj = processData( data );
