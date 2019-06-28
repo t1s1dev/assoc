@@ -68,6 +68,7 @@ function setupCourseTable( data_obj, tableName ) {
     var data = row.getData();
     var assoc_arr  = assocData_obj.arr;
     var certID = assocRoot_obj.ID;
+    var columns;
     
     assocTable.addRow( data )
       .then( function( row ) {
@@ -104,11 +105,14 @@ function setupCourseTable( data_obj, tableName ) {
     $(".cert-add-button").prop('disabled', false);
   }
 
-  var columns = [
+  columns = editMode.get() ? [
     { title: "ID", field: courses_headers[0], width: 60, cellClick: onSelectClick, headerFilter: true },
     { title:"Name", field: courses_headers[1], cellClick: onSelectClick, headerFilter: true },
     { formatter: addButtonCustomFormatter, width: 40, align:"center", cellClick: onAddClick }
-    ]
+  ] : [
+    { title: "ID", field: courses_headers[0], width: 60, cellClick: onSelectClick, headerFilter: true },
+    { title:"Name", field: courses_headers[1], cellClick: onSelectClick, headerFilter: true }
+  ]
 
   return {
     data: courses_arr,
@@ -136,6 +140,7 @@ function setupCertTable( data_obj, tableName ) {
     var data = row.getData();
     var assoc_arr  = assocData_obj.arr;
     var courseID = assocRoot_obj.ID;
+    var columns;
     
     assocTable.addRow( data )
       .then( function( row ) {
@@ -172,10 +177,12 @@ function setupCertTable( data_obj, tableName ) {
     $(".course-add-button").prop('disabled', false);
   }
 
-  var columns = [
+  columns = editMode.get() ? [
     { title:"Name", field:headers[1], cellClick: onSelectClick, headerFilter: true },
     { formatter: addButtonCustomFormatter, width: 40, align:"center", cellClick: onAddClick }
-    ]
+  ] : [
+    { title:"Name", field:headers[1], cellClick: onSelectClick, headerFilter: true }
+  ];
 
   return {
     data: data_arr,
@@ -280,7 +287,7 @@ function resetAssocTable( selected, data_obj, ID ) {
   if (assocRoot_obj.type === "course") {
     assocRoot_obj.name = certData_obj.headers[1];
 
-    columns = editMode().get() ? [
+    columns = editMode.get() ? [
       { title: "Certification Name", field: assocRoot_obj.name },
       { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
     ] : [
@@ -302,7 +309,7 @@ function resetAssocTable( selected, data_obj, ID ) {
   // set up table to show courses for CERTIFICATION
   else {
     assocRoot_obj.name = courseData_obj.headers[1];
-    columns = editMode().get() ? [
+    columns = editMode.get() ? [
       { title: "ID", field: courseData_obj.headers[0], width: 60 },
       { title: "Course Name", field: assocRoot_obj.name },
       { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
