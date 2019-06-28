@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  editMode().set( true );
+  editMode.set( true );
 
   $.get( "/getData/AA_courses.csv", function( data ) { initCourseData( data, "course-table" ) });
   $.get( "/getData/AA_certs.csv", function( data ) { initCertData( data, "cert-table" ) });
