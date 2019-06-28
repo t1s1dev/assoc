@@ -120,7 +120,7 @@ function setupCourseTable( data_obj, tableName ) {
 
   var columns = [
     { title: "ID", field: courses_headers[0], width: 60, cellClick: onSelectClick, headerFilter: true },
-    { title:"Name", field: courses_headers[1], cellClick: onSelectClick, headerFilter: true },
+    { title:"Name", field: courses_headers[1], widthgGrow: 1, cellClick: onSelectClick, headerFilter: true },
     { formatter: addButtonCustomFormatter, width: 40, align:"center", cellClick: onAddClick }
     ]
 
