@@ -367,7 +367,9 @@ function downloadCSV( assocData_obj) {
   var filename = "assoc_data_"+stamp+".csv";
   
   var file_blob;
+  /*
   var tempDownloadElement = document.createElement("a");
+  */
   
   function buildCsvRow( a, b ){
     return a +","+ b +"\n";
@@ -383,8 +385,22 @@ function downloadCSV( assocData_obj) {
   });
 
   file_blob = new Blob( [csv_str], {type: "text/plain"});
+
+  var fd = new FormData();
+  fd.append('data', file_blob, filename);
+  $.ajax({
+      type: 'POST',
+      url: '/upload',
+      data: fd,
+      processData: false,
+      contentType: false
+  }).done(function(data) {
+         console.log(data);
+  });
   
+  /*
   tempDownloadElement.href = URL.createObjectURL(file_blob);
   tempDownloadElement.download = filename;
   tempDownloadElement.click(); // IE: "Access is denied"; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
+  */
 }
