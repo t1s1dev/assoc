@@ -9,7 +9,6 @@ app = Flask(__name__)
 APP_ROOT = os.path.dirname(os.path.abspath(__file__))
 UPLOAD_PATH = '/static'
 UPLOAD_DIR= os.path.join(APP_ROOT, UPLOAD_PATH)
-app.config['UPLOAD_FOLDER'] = UPLOAD_FOLDER
 
 @app.route("/")
 def main():
