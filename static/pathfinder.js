@@ -117,6 +117,7 @@ function setupCourseTable( data_obj, tableName ) {
   return {
     data: courses_arr,
     layout: "fitColumns",
+    selectable: true,
     pagination: "local",
     paginationSize: 10,
     columns: columns
