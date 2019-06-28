@@ -16,7 +16,7 @@ var assocRoot_obj = { type:"", ID:"", name:"" };
 var assocTableName;
 
 function editMode() {
-  var isEditor = false;
+  var isEditor;
 
   return {
     set: function( setIsEditor ) {
