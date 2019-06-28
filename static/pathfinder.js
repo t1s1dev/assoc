@@ -19,10 +19,10 @@ function editMode() {
   var isEditor = false;
 
   return {
-    function set( setIsEditor ) {
+    set: function( setIsEditor ) {
       isEditor = setIsEditor;
     },
-    function get() {
+    get: function() {
       return( isEditor );
     },
   }
