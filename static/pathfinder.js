@@ -33,8 +33,7 @@ $(document).ready(function() {
   });
 
   $('#nav-tab a').on('shown.bs.tab', function (e) {
-    console.log(e.target) // newly activated tab
-    e.relatedTarget // previous active tab
+    refreshTables();
   });
 
 });
@@ -229,8 +228,9 @@ function initCourseData( data, tableName ) {
   courseTableConfig_obj = setupCourseTable( courseData_obj, courseTableName );
 }
 
-function resetCourseTable() {
-  new Tabulator("#"+certTableName, courseTableConfig_obj);
+function refreshTables() {
+  new Tabulator("#"+certTableName, certTableConfig_obj);
+  new Tabulator("#"+courseTableName, courseTableConfig_obj);
 }
 
 
