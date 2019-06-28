@@ -25,17 +25,30 @@ $(document).ready(function() {
     downloadCSV( assocData_obj );
   });
 
+  /* TAB NAV */
+
   $('#nav-tab a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
   });
+
+  $('#nav-tab a').on('shown.bs.tab', function (e) {
+    console.log(e.target) // newly activated tab
+    e.relatedTarget // previous active tab
+  });
+
 });
 
 const tableHeight = 500;
 
 // these need to persist and be accessible
 var courseData_obj = {};
+var courseTableConfig_obj = {};
+var courseTableName;
+
 var certData_obj = {};
+var certTableConfig_obj = {};
+var certTableName;
 
 var assocTable;
 var assocData_obj = {};
@@ -120,17 +133,17 @@ function setupCourseTable( data_obj, tableName ) {
 
   var columns = [
     { title: "ID", field: courses_headers[0], width: 60, cellClick: onSelectClick, headerFilter: true },
-    { title:"Name", field: courses_headers[1], widthgGrow: 1, cellClick: onSelectClick, headerFilter: true },
+    { title:"Name", field: courses_headers[1], cellClick: onSelectClick, headerFilter: true },
     { formatter: addButtonCustomFormatter, width: 40, align:"center", cellClick: onAddClick }
     ]
 
-  var table = new Tabulator("#"+tableName, {
+  return {
     data: courses_arr,
     layout: "fitColumns",
     pagination: "local",
     paginationSize: 10,
     columns: columns
-  });
+  }
 }
 
 /***********************
@@ -212,13 +225,19 @@ function setupAssocTable( tableName ){
 
 function initCourseData( data, tableName ) {
   courseData_obj = processData( data );
-  setupCourseTable( courseData_obj, tableName );
+  courseTableName = tableName;
+  courseTableConfig_obj = setupCourseTable( courseData_obj, courseTableName );
+}
+
+function resetCourseTable() {
+  new Tabulator("#"+certTableName, courseTableConfig_obj);
 }
 
 
 function initCertData( data, tableName ) {
   certData_obj = processData( data );
-  setupCertTable( certData_obj, tableName );
+  certTableName = tableName;
+  certTableConfig_obj = setupCertTable( certData_obj, certTableName );
 }
 
 
