@@ -21,7 +21,14 @@ $(document).ready(function() {
   });
 
   $('#nav-tab a').on('shown.bs.tab', function (e) {
-    e.target.toggleClass('text-primary', true);
+    e.target.addClass('text-primary');
+    e.target.removeClass('text-muted');
+    refreshTables();
+  });
+
+  $('#nav-tab a').on('hidden.bs.tab', function (e) {
+    e.target.addClass('text-muted');
+    e.target.removeClass('text-primary');
     refreshTables();
   });
 
