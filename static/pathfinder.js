@@ -387,7 +387,7 @@ function downloadCSV( assocData_obj) {
   file_blob = new Blob( [csv_str], {type: "text/plain"});
 
   var fd = new FormData();
-  fd.append('data', file_blob, filename);
+  fd.append('file', file_blob, filename);
   $.ajax({
       type: 'POST',
       url: '/upload',
