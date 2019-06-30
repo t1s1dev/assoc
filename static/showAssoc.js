@@ -27,8 +27,9 @@ $(document).ready(function() {
   });
 
   $('#nav-tab a').on('hidden.bs.tab', function (e) {
-    console.log(e.target)//.addClass('text-muted');
-    //e.target.removeClass('text-primary');
+    $(e.target)
+      .addClass('text-muted')
+      .removeClass('text-primary');
     refreshTables();
   });
 
