@@ -22,7 +22,7 @@ $(document).ready(function() {
 
   $('#nav-tab a').on('shown.bs.tab', function (e) {
     $(e.target)
-      .addClass('text-primary');
+      .addClass('text-primary')
       .removeClass('text-muted');
     refreshTables();
   });
