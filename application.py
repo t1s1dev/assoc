@@ -1,8 +1,8 @@
 from flask import Flask, render_template, send_from_directory
-from flask import request
+#from flask import request
 #from werkzeug.utils import secure_filename
 from app import app
-import os
+#import os
 
 app = Flask(__name__)
 
@@ -21,11 +21,6 @@ def edit():
 @app.route('/getData/<path:filename>')
 def get_data(filename):
     return send_from_directory('./static/data/', filename)
-
-@app.route('/saveData')
-def save_data():
-    with open("test.txt","wb") as fo:
-        fo.write("This is Test Data")
 
 if __name__ == "__main__":
     app.run()
