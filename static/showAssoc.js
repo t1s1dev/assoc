@@ -21,9 +21,7 @@ $(document).ready(function() {
   });
 
   $('#nav-tab a').on('shown.bs.tab', function (e) {
-    $('.nav-link')
-      .toggleClass('text-primary')
-      .toggleClass('text-muted');
+    e.target.toggleClass('text-primary', true);
     refreshTables();
   });
 
