@@ -1,4 +1,6 @@
 from flask import Flask, render_template, send_from_directory
+from flask import request
+from werkzeug.utils import secure_filename
 
 app = Flask(__name__)
 
