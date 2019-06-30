@@ -17,6 +17,16 @@ $(document).ready(function() {
   });
 
   $('#nav-tab a').on('shown.bs.tab', function (e) {
+    $(e.target)
+      .addClass('text-primary')
+      .removeClass('text-muted');
+    refreshTables();
+  });
+
+  $('#nav-tab a').on('hidden.bs.tab', function (e) {
+    $(e.target)
+      .addClass('text-muted')
+      .removeClass('text-primary');
     refreshTables();
   });
 
