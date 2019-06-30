@@ -18,7 +18,7 @@ $(document).ready(function() {
   $('#nav-tab a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    $('nav-link')
+    $('.nav-link')
       .toggleClass('text-primary')
       .toggleClass('text-muted');
   });
