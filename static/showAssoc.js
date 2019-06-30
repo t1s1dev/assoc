@@ -18,12 +18,12 @@ $(document).ready(function() {
   $('#nav-tab a').on('click', function (e) {
     e.preventDefault();
     $(this).tab('show');
-    $('.nav-link')
-      .toggleClass('text-primary')
-      .toggleClass('text-muted');
   });
 
   $('#nav-tab a').on('shown.bs.tab', function (e) {
+    $('.nav-link')
+      .toggleClass('text-primary')
+      .toggleClass('text-muted');
     refreshTables();
   });
 
