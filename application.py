@@ -1,14 +1,14 @@
 from flask import Flask, render_template, send_from_directory
 from flask import request
-from werkzeug.utils import secure_filename
+#from werkzeug.utils import secure_filename
 from app import app
 import os
 
 app = Flask(__name__)
 
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_PATH = '/static'
-UPLOAD_DIR= os.path.join(APP_ROOT, UPLOAD_PATH)
+#APP_ROOT = os.path.dirname(os.path.abspath(__file__))
+#UPLOAD_PATH = '/static'
+#UPLOAD_DIR= os.path.join(APP_ROOT, UPLOAD_PATH)
 
 @app.route("/")
 def main():
@@ -30,9 +30,9 @@ def save_data():
 if __name__ == "__main__":
     app.run()
 
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-  if request.method == 'POST':
-    f = request.files['file']
-    f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-  return 'file uploaded successfully'
+#@app.route('/upload', methods=['GET', 'POST'])
+#def upload_file():
+#  if request.method == 'POST':
+#    f = request.files['file']
+#    f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
+#  return 'file uploaded successfully'
