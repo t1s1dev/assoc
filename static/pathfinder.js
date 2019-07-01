@@ -1,5 +1,3 @@
-const tableHeight = "100%";
-
 // these need to persist and be accessible
 
 var courseData_obj = {};
@@ -119,7 +117,7 @@ function setupCourseTable( data_obj, tableName ) {
     layout: "fitColumns",
     selectable: true,
     pagination: "local",
-    paginationSize: 10,
+    //paginationSize: 15,
     columns: columns
   }
 }
