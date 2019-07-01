@@ -56,6 +56,7 @@ function setupCourseTable( data_obj, tableName ) {
 
   var courses_headers = data_obj.headers;
   var courses_arr = data_obj.arr;
+  var columns;
   
   function addButtonCustomFormatter( cell, formatterParams ){
     return "<button class='btn btn-sm btn-success course-add-button font-weight-bold' >&plus;</button>";
@@ -66,7 +67,6 @@ function setupCourseTable( data_obj, tableName ) {
     var data = row.getData();
     var assoc_arr  = assocData_obj.arr;
     var certID = assocRoot_obj.ID;
-    var columns;
     
     assocTable.addRow( data )
       .then( function( row ) {
@@ -115,7 +115,7 @@ function setupCourseTable( data_obj, tableName ) {
   return {
     data: courses_arr,
     layout: "fitColumns",
-    //selectable: 1,
+    selectable: 1,
     pagination: "local",
     paginationSize: 15,
     columns: columns
@@ -129,6 +129,7 @@ function setupCertTable( data_obj, tableName ) {
 
   var headers = data_obj.headers;
   var data_arr = data_obj.arr;
+  var columns;
   
   function addButtonCustomFormatter( cell, formatterParams ){
     return "<button class='btn btn-sm btn-success cert-add-button font-weight-bold' >&plus;</button>";
@@ -139,19 +140,22 @@ function setupCertTable( data_obj, tableName ) {
     var data = row.getData();
     var assoc_arr  = assocData_obj.arr;
     var courseID = assocRoot_obj.ID;
-    var columns;
-    
+
+    console.log("add clicked");
+
     assocTable.addRow( data )
       .then( function( row ) {
         // look for existing
         var found = false;
 
+        console.log("add row");
+
         $.grep( assoc_arr, function( element, j ) {
           if (element["COURSE_ID"] === courseID && element["CERT_ID"] === data["CERT_ID"] ) {
             found = true;
-          return true;
-        }
-        return false;
+            return true;
+          }
+          return false;
         });
 
         if( !found ){ 
@@ -186,7 +190,7 @@ function setupCertTable( data_obj, tableName ) {
   return {
     data: data_arr,
     layout: "fitColumns",
-    //selectable: 1,
+    selectable: 1,
     pagination: "local",
     paginationSize: 15,
     columns: columns
