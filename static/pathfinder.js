@@ -117,7 +117,7 @@ function setupCourseTable( data_obj, tableName ) {
     layout: "fitColumns",
     selectable: true,
     pagination: "local",
-    //paginationSize: 15,
+    paginationSize: 15,
     columns: columns
   }
 }
@@ -186,8 +186,8 @@ function setupCertTable( data_obj, tableName ) {
   return {
     data: data_arr,
     layout: "fitColumns",
-    pagination:"local",
-    paginationSize: 10,
+    pagination: "local",
+    paginationSize: 15,
     columns: columns
   }
 }
@@ -334,7 +334,8 @@ function resetAssocTable( selected, data_obj, ID ) {
   assocTable = new Tabulator("#"+assocTableName, {
     layout:"fitColumns",
     data: data_obj.arr,
-    //movableRows: true,
+    pagination: "local",
+    paginationSize: 15,
     initialFilter: filter,
     columns: columns
   });
