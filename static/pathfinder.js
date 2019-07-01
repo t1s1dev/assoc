@@ -141,14 +141,10 @@ function setupCertTable( data_obj, tableName ) {
     var assoc_arr  = assocData_obj.arr;
     var courseID = assocRoot_obj.ID;
 
-    console.log("add clicked");
-
     assocTable.addRow( data )
       .then( function( row ) {
         // look for existing
         var found = false;
-
-        console.log("add row");
 
         $.grep( assoc_arr, function( element, j ) {
           if (element["COURSE_ID"] === courseID && element["CERT_ID"] === data["CERT_ID"] ) {
@@ -339,8 +335,6 @@ function resetAssocTable( selected, data_obj, ID ) {
   assocTable = new Tabulator("#"+assocTableName, {
     layout:"fitColumns",
     data: data_obj.arr,
-    pagination: "local",
-    paginationSize: 15,
     initialFilter: filter,
     columns: columns
   });
