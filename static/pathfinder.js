@@ -115,7 +115,7 @@ function setupCourseTable( data_obj, tableName ) {
   return {
     data: courses_arr,
     layout: "fitColumns",
-    selectable: 1,
+    //selectable: 1,
     pagination: "local",
     paginationSize: 15,
     columns: columns
@@ -186,7 +186,7 @@ function setupCertTable( data_obj, tableName ) {
   return {
     data: data_arr,
     layout: "fitColumns",
-    selectable: 1,
+    //selectable: 1,
     pagination: "local",
     paginationSize: 15,
     columns: columns
