@@ -1,12 +1,4 @@
 from flask import Flask, render_template, send_from_directory
-from flask import request
-from werkzeug.utils import secure_filename
-
-import os
-
-APP_ROOT = os.path.dirname(os.path.abspath(__file__))
-UPLOAD_PATH = '/static'
-UPLOAD_DIR= os.path.join(APP_ROOT, UPLOAD_PATH)
 
 app = Flask(__name__)
 
@@ -26,13 +18,6 @@ def get_data(filename):
 def save_data():
     with open("test.txt","wb") as fo:
         fo.write("This is Test Data")
-
-@app.route('/upload', methods=['GET', 'POST'])
-def upload_file():
-  if request.method == 'POST':
-    f = request.files['file']
-    f.save(os.path.join(app.config['UPLOAD_FOLDER'], secure_filename(f.filename)))
-  return 'file uploaded successfully'
 
 if __name__ == "__main__":
     app.run()
