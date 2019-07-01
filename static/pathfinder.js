@@ -1,4 +1,4 @@
-const tableHeight = 500;
+const tableHeight = "100%";
 
 // these need to persist and be accessible
 
