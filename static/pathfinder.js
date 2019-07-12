@@ -254,7 +254,7 @@ function resetAssocTable( selected, data_obj, ID ) {
     // disable the course ADD buttons and enable cert ADD buttons
     $(".course-add-button").prop('disabled', true);
     $(".cert-add-button").prop('disabled', false);
-    //$("#courses").tab('show');
+    $("#nav-courses-tab").tab('show');
   }
 
   function onCertSelectClick( e, cell ){
@@ -268,7 +268,7 @@ function resetAssocTable( selected, data_obj, ID ) {
     // disable the cert ADD buttons and enable course ADD buttons
     $(".cert-add-button").prop('disabled', true);
     $(".course-add-button").prop('disabled', false);
-    $("#certs").tab('show');
+    $("#nav-certs-tab").tab('show');
 
   }
   
