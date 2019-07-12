@@ -247,7 +247,6 @@ function resetAssocTable( selected, data_obj, ID ) {
     var row = cell.getRow();
     // set header of association table
     $("#root-choice").val(row.getData()["NAME"]);
-
     // set type
     $("#root-type").text("COURSE");
     // note that we send the *cert* data obj - we filter by course
@@ -255,6 +254,7 @@ function resetAssocTable( selected, data_obj, ID ) {
     // disable the course ADD buttons and enable cert ADD buttons
     $(".course-add-button").prop('disabled', true);
     $(".cert-add-button").prop('disabled', false);
+    console.log("here")
     $("#courses").tab('show');
   }
 
@@ -262,7 +262,6 @@ function resetAssocTable( selected, data_obj, ID ) {
     var row = cell.getRow();
     // set header of association table
     $("#root-choice").val(row.getData()["NAME"]);
-
     // set type
     $("#root-type").text("CERTIFICATION");
     // note that we send the *course* data obj - we filter by cert
@@ -414,20 +413,7 @@ function downloadCSV( assocData_obj) {
   });
 
   file_blob = new Blob( [csv_str], {type: "text/plain"});
-  /*
-  var fd = new FormData();
-  fd.append('file', file_blob, filename);
-  $.ajax({
-      type: 'POST',
-      url: '/upload',
-      data: fd,
-      processData: false,
-      contentType: false
-  }).done(function(data) {
-         console.log(data);
-  });
-  
-  */
+
   tempDownloadElement.href = URL.createObjectURL(file_blob);
   tempDownloadElement.download = filename;
   tempDownloadElement.click(); // IE: "Access is denied"; see: https://connect.microsoft.com/IE/feedback/details/797361/ie-10-treats-blob-url-as-cross-origin-and-denies-access
