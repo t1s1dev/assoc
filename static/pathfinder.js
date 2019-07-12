@@ -254,8 +254,7 @@ function resetAssocTable( selected, data_obj, ID ) {
     // disable the course ADD buttons and enable cert ADD buttons
     $(".course-add-button").prop('disabled', true);
     $(".cert-add-button").prop('disabled', false);
-    console.log("here")
-    $("#courses").tab('show');
+    //$("#courses").tab('show');
   }
 
   function onCertSelectClick( e, cell ){
