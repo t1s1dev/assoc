@@ -247,13 +247,29 @@ function resetAssocTable( selected, data_obj, ID ) {
     var row = cell.getRow();
     // set header of association table
     $("#root-choice").val(row.getData()["NAME"]);
-    // set type
-    $("#root-type").text("CERTIFICATION");
-    // note that we send the *course* data obj - we filter by cert
-    resetAssocTable("cert", courseData_obj, row.getData()["CERT_ID"]);
-    // disable the cert ADD buttons and enable course ADD buttons
-    $(".cert-add-button").prop('disabled', true);
-    $(".course-add-button").prop('disabled', false);
+
+    // Is it a certification or a course?
+
+    if( $("#root-type").text() == "CERTIFICATION" ) {
+      // set type
+      $("#root-type").text("COURSE");
+      // note that we send the *cert* data obj - we filter by course
+      resetAssocTable("course", certData_obj, row.getData()["COURSE_ID"]);
+      // disable the course ADD buttons and enable cert ADD buttons
+      $(".course-add-button").prop('disabled', true);
+      $(".cert-add-button").prop('disabled', false);
+      $("#courses").tab('show');
+    }
+    else {
+      // set type
+      $("#root-type").text("CERTIFICATION");
+      // note that we send the *course* data obj - we filter by cert
+      resetAssocTable("cert", courseData_obj, row.getData()["CERT_ID"]);
+      // disable the cert ADD buttons and enable course ADD buttons
+      $(".cert-add-button").prop('disabled', true);
+      $(".course-add-button").prop('disabled', false);
+      $("#certifations").tab('show');
+    }
   }
   
   function deleteButtonCustomFormatter( cell, formatterParams ){
