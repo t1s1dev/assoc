@@ -243,33 +243,35 @@ function resetAssocTable( selected, data_obj, ID ) {
     }]]; // starter filter object should give no results
 
 
-  function onSelectClick( e, cell ){
+  function onCourseSelectClick( e, cell ){
     var row = cell.getRow();
     // set header of association table
     $("#root-choice").val(row.getData()["NAME"]);
 
-    // Is it a certification or a course?
+    // set type
+    $("#root-type").text("COURSE");
+    // note that we send the *cert* data obj - we filter by course
+    resetAssocTable("course", certData_obj, row.getData()["COURSE_ID"]);
+    // disable the course ADD buttons and enable cert ADD buttons
+    $(".course-add-button").prop('disabled', true);
+    $(".cert-add-button").prop('disabled', false);
+    $("#courses").tab('show');
+  }
 
-    if( $("#root-type").text() == "CERTIFICATION" ) {
-      // set type
-      $("#root-type").text("COURSE");
-      // note that we send the *cert* data obj - we filter by course
-      resetAssocTable("course", certData_obj, row.getData()["COURSE_ID"]);
-      // disable the course ADD buttons and enable cert ADD buttons
-      $(".course-add-button").prop('disabled', true);
-      $(".cert-add-button").prop('disabled', false);
-      $("#courses").tab('show');
-    }
-    else {
-      // set type
-      $("#root-type").text("CERTIFICATION");
-      // note that we send the *course* data obj - we filter by cert
-      resetAssocTable("cert", courseData_obj, row.getData()["CERT_ID"]);
-      // disable the cert ADD buttons and enable course ADD buttons
-      $(".cert-add-button").prop('disabled', true);
-      $(".course-add-button").prop('disabled', false);
-      $("#certifations").tab('show');
-    }
+  function onCertSelectClick( e, cell ){
+    var row = cell.getRow();
+    // set header of association table
+    $("#root-choice").val(row.getData()["NAME"]);
+
+    // set type
+    $("#root-type").text("CERTIFICATION");
+    // note that we send the *course* data obj - we filter by cert
+    resetAssocTable("cert", courseData_obj, row.getData()["CERT_ID"]);
+    // disable the cert ADD buttons and enable course ADD buttons
+    $(".cert-add-button").prop('disabled', true);
+    $(".course-add-button").prop('disabled', false);
+    $("#certs").tab('show');
+
   }
   
   function deleteButtonCustomFormatter( cell, formatterParams ){
@@ -318,10 +320,10 @@ function resetAssocTable( selected, data_obj, ID ) {
     assocRoot_obj.name = certData_obj.headers[1];
 
     columns = editMode.get() ? [
-      { title: "Certification Name", field: assocRoot_obj.name, cellClick: onSelectClick },
+      { title: "Certification Name", field: assocRoot_obj.name, cellClick: onCertSelectClick },
       { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
     ] : [
-      { title: "Certification Name", field: assocRoot_obj.name, cellClick: onSelectClick }
+      { title: "Certification Name", field: assocRoot_obj.name, cellClick: onCertSelectClick }
     ];
     // build correct filter
     $.grep(assocData_obj.arr, function( element, i ) {
@@ -341,11 +343,11 @@ function resetAssocTable( selected, data_obj, ID ) {
     assocRoot_obj.name = courseData_obj.headers[1];
     columns = editMode.get() ? [
       { title: "ID", field: courseData_obj.headers[0], width: 60 },
-      { title: "Course Name", field: assocRoot_obj.name },
+      { title: "Course Name", field: assocRoot_obj.name, cellClick: onCourseSelectClick },
       { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
     ] : [
       { title: "ID", field: courseData_obj.headers[0], width: 60 },
-      { title: "Course Name", field: assocRoot_obj.name }
+      { title: "Course Name", field: assocRoot_obj.name, cellClick: onCourseSelectClick }
     ];
     // build correct filter
     $.grep(assocData_obj.arr, function( element, i ) {
