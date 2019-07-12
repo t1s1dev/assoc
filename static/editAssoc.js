@@ -9,6 +9,15 @@ $(document).ready(function() {
     downloadCSV( assocData_obj );
   });
 
+  
+  $("#view").click( function() {
+    var search_base_url = "https://www.globalknowledge.com/us-en/search/?q="
+    var search_term = $("#root-choice").val().replace(/ /g, "+");
+    var type_term = $("#root-type").text().toLowerCase();
+    var url = search_base_url+search_term+"&f="+type_term;
+    window.open(url, '_blank');
+  });
+
   /* TAB NAV */
 
   $('#nav-tab a').on('click', function (e) {

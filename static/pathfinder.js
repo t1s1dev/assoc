@@ -241,6 +241,20 @@ function resetAssocTable( selected, data_obj, ID ) {
     type:"=", 
     value: "0"
     }]]; // starter filter object should give no results
+
+
+  function onSelectClick( e, cell ){
+    var row = cell.getRow();
+    // set header of association table
+    $("#root-choice").val(row.getData()["NAME"]);
+    // set type
+    $("#root-type").text("CERTIFICATION");
+    // note that we send the *course* data obj - we filter by cert
+    resetAssocTable("cert", courseData_obj, row.getData()["CERT_ID"]);
+    // disable the cert ADD buttons and enable course ADD buttons
+    $(".cert-add-button").prop('disabled', true);
+    $(".course-add-button").prop('disabled', false);
+  }
   
   function deleteButtonCustomFormatter( cell, formatterParams ){
     return "<button class='btn btn-sm btn-danger course-add-button font-weight-bold' >&times;</button>";
@@ -288,10 +302,10 @@ function resetAssocTable( selected, data_obj, ID ) {
     assocRoot_obj.name = certData_obj.headers[1];
 
     columns = editMode.get() ? [
-      { title: "Certification Name", field: assocRoot_obj.name },
+      { title: "Certification Name", field: assocRoot_obj.name, cellClick: onSelectClick },
       { formatter: deleteButtonCustomFormatter, width: 40, align:"center", cellClick: onDeleteClick }
     ] : [
-      { title: "Certification Name", field: assocRoot_obj.name }
+      { title: "Certification Name", field: assocRoot_obj.name, cellClick: onSelectClick }
     ];
     // build correct filter
     $.grep(assocData_obj.arr, function( element, i ) {
