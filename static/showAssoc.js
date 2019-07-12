@@ -13,6 +13,12 @@ $(document).ready(function() {
     });
   });
 
+  $("#view").click( function() {
+    var search_base_url = "https://www.globalknowledge.com/us-en/search/?q="
+    var search_term = $("#root-choice").val().replace(" ", "+");
+    window.open(search_base_url+search_term,'_blank');
+  });
+
   /* TAB NAV */
 
   $('#nav-tab a').on('click', function (e) {
